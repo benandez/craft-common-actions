@@ -1013,7 +1013,8 @@ jobs:
     # riscv64, so the amd64 and riscv64 libtinfo6 can't match and the cross deps don't install (#44).
     runs-on: ubuntu-24.04
     env:
-      # Built on 24.04, the binaries need GLIBC_2.39; package.sh writes this into the deb and rpm.
+      # Built on 24.04, the binaries need GLIBC_2.39. The deb and rpm declare it only where the
+      # app's nfpm.yaml reads ${GLIBC_FLOOR}; an app still hard-coding 2.35 keeps declaring 2.35.
       GLIBC_FLOOR: "2.39"
       CARGO_TERM_COLOR: always
       CARGO_INCREMENTAL: 0
